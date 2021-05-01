@@ -16,6 +16,12 @@ export default function Home() {
             <a>Go to Other page &gt;&gt;</a>
           </Link>
         </div>
+        <div className="card p-3">
+          <p>これはもう一つのページの表示です</p>
+          <Link href="/">
+            <a>&lt;&lt; Back to Index page</a>
+          </Link>
+        </div>
       </div>
     </div>
   )
