@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import {useState, useEffect} from 'react'
 import Layout from '../../components/layout'
 import firebase from 'firebase'
 import { useRouter } from 'next/router'
@@ -31,6 +31,10 @@ export default function Info() {
     const t = new Date().getTime()
     const to = {
       comment:'To: ' + cmt,
+      time:t
+    }
+    const from = {
+      comment:'From: ' + cmt,
       time:t
     }
     //自身のアドレス内にメッセージ追加
@@ -103,8 +107,8 @@ export default function Info() {
           <div>
             <div>Name: {mydata != null ? mydata.name : ''}</div>
             <div>Mail: {mydata != null ? mydata.mail : ''}</div>
-            <div>Mail: {mydata != null ? mydata.tel : ''}</div>
-            <div>Mail: {mydata != null ? mydata.memo : ''}</div>
+            <div>Tel:  {mydata != null ? mydata.tel : ''}</div>
+            <div>Memo: {mydata != null ? mydata.memo : ''}</div>
           </div>
           <hr/>
           <div className="form-group">
