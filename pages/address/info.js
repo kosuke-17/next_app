@@ -39,21 +39,22 @@ export default function Info() {
     }
     //自身のアドレス内にメッセージ追加
     db.collection('address')
-        .doc(auth.currentUser.email)
-        .collection('address')
-        .doc(router.query.id)
-        .collection('message').add(to).then(ref=> {
+    .doc(auth.currentUser.email)
+    .collection('address')
+    .doc(router.query.id)
+    .collection('message').add(to).then(ref=> {
     //相手のアドレス内にメッセージを追加
     db.collection('address')
-        .doc(router.query.id)
-        .collection('address')
-        .doc(auth.currentUser.email)
-        .collection('message').add(from).then(ref=> {
+    .doc(router.query.id)
+    .collection('address')
+    .doc(auth.currentUser.email)
+    .collection('message').add(from).then(ref=> {
     //相手のアドレスないのflagを変更
     db.collection('address')
-        .doc(router.query.id)
-        .collection('address')
-        .doc(auth.currentUser.mail).update({flag:true}).then(ref=> {
+    .doc(router.query.id)
+    .collection('address')
+    .doc(auth.currentUser.email)
+    .update({flag:true}).then(ref=> {
           router.push('/address')
         })
       })
@@ -68,31 +69,29 @@ export default function Info() {
   // アドレスデータとメッセージを取得し表示
   useEffect(() => {
     if (auth.currentUser != null) {
-      db.collection('address')
-          .doc(auth.currentUser.email)
-          .collection('address')
-          .doc(router.query.id).get()
-          .then((snapshot)=> {
+      db.collection('address').doc(auth.currentUser.email)
+      .collection('address')
+      .doc(router.query.id)
+      .get().then((snapshot)=> {
             setMydata(snapshot.data())
       })
-      db.collection('address')
-          .doc(auth.currentUser.email)
-          .collection('address')
-          .doc(router.query.id)
-          .collection('message').orderBy('time', 'desc').get()
-          .then(snapshot=> {
+      db.collection('address').doc(auth.currentUser.email)
+      .collection('address')
+      .doc(router.query.id)
+      .collection('message').orderBy('time', 'desc')
+      .get().then(snapshot=> {
         const data = []
         snapshot.forEach((document)=> {
           data.push(<li className="list-group-item px-3 py-1">
             {document.data().comment}
           </li>)
         })
-        setMydata(data)
+        setMsgdata(data)
       })
       db.collection('address')
-          .doc(auth.currentUser.email)
-          .collection('address')
-          .doc(router.query.id).update({flag:false})
+      .doc(auth.currentUser.email)
+      .collection('address')
+      .doc(router.query.id).update({flag:false})
     } else {
       setMessage("no data")
     }
@@ -105,7 +104,7 @@ export default function Info() {
         <h5 className="mb-4">{message}</h5>
         <div className="text-left">
           <div>
-            <div>Name: {mydata != null ? mydata.name : ''}</div>
+            <div>Name: {mydata != null ? mydata.name : 'あああ'}</div>
             <div>Mail: {mydata != null ? mydata.mail : ''}</div>
             <div>Tel:  {mydata != null ? mydata.tel : ''}</div>
             <div>Memo: {mydata != null ? mydata.memo : ''}</div>
