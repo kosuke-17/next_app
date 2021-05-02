@@ -13,8 +13,8 @@ auth.signOut()
 export default function Index() {
   let addresses = []
   const [user, setUser] = useState(null)
-  const [data, setData] =useState(addresses)
-  const[message, setMessage] = useState('pleace login...')
+  const [data, setData] = useState(addresses)
+  const[message, setMessage] = useState('please login...')
   const router = useRouter()
 
   // ログイン処理
@@ -62,7 +62,7 @@ export default function Index() {
     if (auth.currentUser != null) {
       setUser(auth.currentUser.displayName)
       setMessage(auth.currentUser.displayName + 'さんの登録アドレス')
-      db.collection('address').doc(aut.currentUser.mail).collection('address').get().then((snapshot)=> {
+      db.collection('address').doc(auth.currentUser.mail).collection('address').get().then((snapshot)=> {
         snapshot.forEach((document)=> {
           const doc = document.data()
           addresses.push(
