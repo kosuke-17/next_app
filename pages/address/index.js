@@ -62,12 +62,12 @@ export default function Index() {
     if (auth.currentUser != null) {
       setUser(auth.currentUser.displayName)
       setMessage(auth.currentUser.displayName + 'さんの登録アドレス')
-      db.collection('address').doc(auth.currentUser.mail).collection('address').get().then((snapshot)=> {
+      db.collection('address').doc(auth.currentUser.email).collection('address').get().then((snapshot)=> {
         snapshot.forEach((document)=> {
           const doc = document.data()
           addresses.push(
             <li className="list-group-item list-group-item-action p-1" onClick={doLink} id={document.id}>
-              {doc.flag ? '√' : ''}{doc.name} (doc.mail)
+              {doc.flag ? '√' : ''}{doc.name} ({doc.mail})
             </li>
           )
         })

@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
 import Layout from '../../components/layout'
-import { useRouter } from 'next/router'
 import firebase from 'firebase'
+import { useRouter } from 'next/router'
 import '../../components/fire'
-
+// firebaseとuseRouterが逆だと追加できない
 
 const  db = firebase.firestore()
 const auth = firebase.auth()
